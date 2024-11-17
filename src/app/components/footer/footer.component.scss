@@ -1,0 +1,27 @@
+// Footer container
+.footer {
+    @apply bg-gray-800 text-white py-6 mt-4 text-center;
+
+    // Navigation Links
+    nav ul {
+        @apply flex justify-center space-x-4 mb-4;
+
+        li a {
+            @apply text-gray-400 hover:text-gray-200;
+        }
+    }
+
+    // Social Media Links
+    .social-links {
+        @apply flex justify-center space-x-4 mb-4;
+
+        li a {
+            @apply text-gray-400 hover:text-gray-200;
+        }
+    }
+
+    // Copyright Text
+    p {
+        @apply text-sm text-gray-500;
+    }
+}

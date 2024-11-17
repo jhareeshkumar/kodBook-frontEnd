@@ -1,0 +1,49 @@
+.navbar {
+    @apply bg-gray-800 text-white;
+}
+
+.navbar-header {
+    @apply flex justify-between items-center w-full px-4 py-3;
+}
+
+.navbar-title-link {
+    @apply text-white text-2xl font-semibold cursor-pointer;
+}
+
+.navbar-title-link:hover {
+    @apply text-blue-400;
+}
+
+.navbar-actions {
+    @apply flex items-center space-x-6;
+}
+
+.navbar-link {
+    @apply text-white text-lg font-medium hover:text-blue-400;
+}
+
+.active-page {
+    @apply font-bold text-blue-500 underline;
+}
+
+/* Responsive adjustments */
+@screen sm {
+    .navbar-header {
+        @apply px-2 py-2;
+        /* For small screens, reduce padding */
+    }
+}
+
+@screen md {
+    .navbar-header {
+        @apply px-6 py-3;
+        /* For medium screens, increase padding */
+    }
+}
+
+@screen lg {
+    .navbar-header {
+        @apply px-8 py-4;
+        /* For large screens, even more padding */
+    }
+}

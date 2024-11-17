@@ -1,1 +1,173 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+    @apply sm:text-sm md:text-base;
+}
+
+//* Angular Control status CSS classes - Apply only when touched */
+.ng-touched.ng-valid[required],
+.ng-touched.ng-valid.required {
+    border-left: 5px solid #42A948;
+    /* green */
+}
+
+.ng-touched.ng-invalid:not(form) {
+    border-left: 5px solid #a94442;
+    /* red */
+}
+
+/* Alert div styling */
+.alert div {
+    background-color: #fed3d3;
+    color: #820000;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+/* Label styling */
+label {
+    display: block;
+    margin-bottom: .5rem;
+}
+
+/* Select element styling */
+select {
+    width: 100%;
+    padding: .5rem;
+}
+
+
+/* Container styling */
+.form-container {
+    @apply max-w-md mx-auto p-8 border border-gray-300 rounded-lg bg-white shadow-lg mt-3;
+}
+
+/* Title styling */
+.form-title {
+    @apply text-center text-2xl font-semibold mb-6 text-gray-800;
+}
+
+/* Form styling */
+.form {
+    @apply flex flex-col gap-4;
+}
+
+/* Label styling */
+.form-label {
+    @apply text-base text-gray-700 font-semibold;
+}
+
+/* Input field styling */
+.form-input {
+    @apply p-3 text-base border border-gray-300 rounded-md transition-colors duration-300 focus:border-blue-500 focus:outline-none;
+}
+
+/* Error message styling */
+.form-error {
+    @apply text-red-500 text-sm font-medium mt-1 flex items-center animate-bounce;
+}
+
+.form-error .icon {
+    @apply w-4 h-4 mr-1;
+}
+
+/* Submit button styling */
+.form-submit {
+    @apply p-3 text-base font-bold text-white bg-blue-500 rounded-md hover:bg-blue-600 transition-colors duration-300 cursor-pointer;
+}
+
+/* Radio Group Container */
+.radio-group {
+    @apply flex items-center gap-4;
+}
+
+/* Radio Input and Label Styling */
+.radio-group input[type="radio"] {
+    @apply hidden;
+}
+
+.radio-group label {
+    @apply inline-block text-base text-gray-700 cursor-pointer relative pl-8;
+}
+
+/* Add custom "radio button" appearance using pseudo-element */
+.radio-group label::before {
+    @apply content-[''] absolute left-0 top-0 w-4 h-4 rounded-full border-2 border-gray-600 bg-white transition-all;
+}
+
+.radio-group input:checked+label::before {
+    @apply bg-blue-500 border-blue-500;
+}
+
+.radio-group input:checked+label {
+    @apply text-blue-500;
+}
+
+/* Hover and focus effects for labels */
+.radio-group label:hover {
+    @apply text-blue-600;
+}
+
+.radio-group input:focus+label::before {
+    @apply ring-2 ring-blue-300;
+}
+
+
+
+/* Container styling to position button inside the input field */
+.password-container {
+    @apply relative;
+}
+
+/* Input field styling */
+.form-input {
+    @apply w-full p-3 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10;
+    /* Added padding on the right */
+}
+
+/* Password toggle button styling */
+/* styles.scss */
+.password-toggle-btn {
+    @apply absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer hover:text-blue-600 transition-colors duration-300 cursor-pointer mt-4;
+}
+
+.eye-icon {
+    @apply w-7 h-7 m-1;
+}
+
+
+
+/* Styling the login link using Tailwind utility classes */
+.form-link {
+    @apply text-blue-500 text-sm font-semibold hover:text-blue-700 transition-colors duration-300;
+    @apply block text-center;
+    /* This centers the link */
+}
+
+/* Optional: If you want to add additional hover effects like underline */
+.login-link:hover {
+    @apply underline;
+}
+
+/* Responsive adjustments */
+@screen sm {
+    .form-container {
+        @apply p-6;
+    }
+
+}
+
+@screen md {
+    .form-container {
+        @apply p-8;
+    }
+}

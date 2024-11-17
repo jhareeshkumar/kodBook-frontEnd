@@ -1,0 +1,49 @@
+<div class="form-container">
+    <h1 class="form-title">Login</h1>
+    <form [formGroup]="loginFormGroup" (submit)="onLogin()" method="post" class="form">
+        <label for="userName" class="form-label">Username</label>
+        <input type="text" formControlName="userName" name="userName" id="userName" class="form-input"
+            autocomplete="username" placeholder="Enter your username" />
+        <div *ngIf="hasError('userName', 'required')" class="form-error">
+            <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 12H9v-2h2v2zm0-4H9V6h2v4z" />
+            </svg>
+            Please enter a username!
+        </div>
+        <div class="password-container">
+            <label for="password" class="form-label">Password</label>
+            <input [type]="passwordVisibleSignal() ? 'text' : 'password'" formControlName="password" name="password"
+                id="password" class="form-input" autocomplete="current-password" placeholder="Enter your password" />
+            <!-- Password Visibility Toggle Button -->
+            <button type="button" (click)="togglePasswordVisibility()" class="password-toggle-btn">
+                <!-- Eye (show password) icon -->
+                <svg *ngIf="!passwordVisibleSignal()" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-eye-fill eye-icon" viewBox="0 0 16 16">
+                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+                    <path
+                        d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
+                </svg>
+
+                <!-- Eye Off (hide password) icon -->
+                <svg *ngIf="passwordVisibleSignal()" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-eye-slash-fill eye-icon" viewBox="0 0 16 16">
+                    <path
+                        d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7 7 0 0 0 2.79-.588M5.21 3.088A7 7 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474z" />
+                    <path
+                        d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12z" />
+                </svg>
+            </button>
+        </div>
+
+        <div *ngIf="hasError('password', 'required')" class="form-error">
+            <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 12H9v-2h2v2zm0-4H9V6h2v4z" />
+            </svg>
+            Please enter a password!
+        </div>
+
+        <input type="submit" value="Login" class="form-submit" />
+
+        <a routerLink="/signup" class="form-link">New user? SignUp!</a>
+    </form>
+</div>

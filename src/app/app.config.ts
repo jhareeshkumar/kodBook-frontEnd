@@ -5,6 +5,7 @@ import { routes } from './app.routes';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideToastr } from 'ngx-toastr';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideAnimations, provideNoopAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,6 +14,8 @@ export const appConfig: ApplicationConfig = {
     // provideClientHydration(),//this is only enabled in ssr
     provideHttpClient(withFetch()),
     provideAnimationsAsync(),// required animations providers for toastr
+    provideAnimations(),
+    provideNoopAnimations(),
     provideToastr({
       positionClass: 'toast-top-right',
       timeOut: 5000,

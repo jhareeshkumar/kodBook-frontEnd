@@ -1,29 +1,64 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  private router = inject(Router)
+
+  constructor(private http: HttpClient) {
+    const storedUsername = localStorage.getItem('userName')
+    if (storedUsername) {
+      this.userSignal.set({ userName: storedUsername });
+    }
+  }
 
   private apiUrl = environment.apiUrl;
 
 
-  signup(signupForm: any) {
-    return this.http.post(this.apiUrl + "/user/signup", signupForm);
+  //user signal related to user tasks
+  private userSignal = signal<User | null>(null);
+
+
+
+  signup(signupData: any) {
+    return this.http.post(this.apiUrl + "/user/signup", signupData);
   }
 
-  login(loginForm: any): Observable<Object> {
-    console.log('username:', loginForm.userName);
-    return this.http.post(this.apiUrl + "/user/login", loginForm);
+  login(credentials: any): Observable<Object> {
+    return this.http.post(this.apiUrl + "/user/login", credentials);
   }
 
   logout(): void {
     const logoutUserName = localStorage.removeItem('userName');
     console.log("logoutUserName:", logoutUserName);
+    this.router.navigate(['/login']);
   }
+
+  isLoggedin(): boolean {
+    if (this.userSignal() || localStorage.getItem('userName')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  setUser(user: User): void {
+    this.userSignal.set(user);
+  }
+
+  getUser() {
+    return this.userSignal();
+  }
+
+  clearUser() {
+    this.userSignal.set(null);
+  }
+
 }

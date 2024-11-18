@@ -1,3 +1,26 @@
+@if (isLoggedIn()) {
+<div class="navbar">
+    <header class="navbar-header">
+        <!-- Kodbook Title (left) -->
+        <div class="navbar-title">
+            <a routerLink="/home" class="navbar-title-link">
+                <h1>Kodbook</h1>
+            </a>
+        </div>
+
+        <!-- User Profile (right) -->
+        <div class="navbar-profile">
+
+            <span class="navbar-profile-name">{{getUsername()}}</span>
+            <img src="https://via.placeholder.com/40" alt="User Avatar" class="navbar-profile-avatar" />
+
+        </div>
+    </header>
+    <button (click)="onLogout()" class="navbar-title-link">Logout</button>
+</div>
+
+}
+@else {
 <div class="navbar">
     <header class="navbar-header">
         <!-- Kodbook Title (left) -->
@@ -16,3 +39,4 @@
         </div>
     </header>
 </div>
+}

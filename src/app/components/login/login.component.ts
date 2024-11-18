@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-login',
@@ -22,9 +23,6 @@ export class LoginComponent {
 
   //signals
   passwordVisibleSignal = signal(false);
-
-  //signal for storing the loggedinUserInfo
-  authSignal = signal({ userName: '' });
 
 
   //signal methods
@@ -47,22 +45,22 @@ export class LoginComponent {
 
   onLogin(): void {
     if (this.loginFormGroup.valid) {
-      const loginData = this.loginFormGroup.value
+      const credentials = this.loginFormGroup.value
       //handling post request
-      this.authService.login(loginData).subscribe({
+      this.authService.login(credentials).subscribe({
         next: (res: any) => {
           this.toastr.success(res.message, "Success");
           console.log("success Response", res);
 
-          //redirection after successfull login
-          this.router.navigate(['/feed']);
+          const user: User = res.data;
 
+          //storing user data to signal
+          this.authService.setUser(user);
 
           localStorage.setItem('userName', res.data.userName);
 
-          //saving logged in user signal
-          this.authSignal.set(res.data.userName);
-          console.log('authsignal', this.authSignal());
+          //redirection after successfull login
+          this.router.navigate(['/feed']);
 
         },
         error: (error: any) => {
@@ -83,9 +81,5 @@ export class LoginComponent {
     else {
       this.loginFormGroup.markAllAsTouched();
     }
-  }
-
-  onLogout(): void {
-    this.authService.logout();
   }
 }

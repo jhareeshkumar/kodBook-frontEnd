@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, Signal, signal } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -25,13 +25,23 @@ export class AuthService {
   //user signal related to user tasks
   private userSignal = signal<User | null>(null);
 
+  setUser(user: User): void {
+    this.userSignal.set(user);
+  }
 
+  getUser(): Signal<User | null> {
+    return this.userSignal;
+  }
+
+  clearUser() {
+    this.userSignal.set(null);
+  }
 
   signup(signupData: any) {
     return this.http.post(this.apiUrl + "/user/signup", signupData);
   }
 
-  login(credentials: any): Observable<Object> {
+  login(credentials: any): Observable<User> {
     return this.http.post(this.apiUrl + "/user/login", credentials);
   }
 
@@ -48,17 +58,4 @@ export class AuthService {
       return false;
     }
   }
-
-  setUser(user: User): void {
-    this.userSignal.set(user);
-  }
-
-  getUser() {
-    return this.userSignal();
-  }
-
-  clearUser() {
-    this.userSignal.set(null);
-  }
-
 }

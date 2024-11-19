@@ -70,7 +70,6 @@ export class LoginComponent {
           } else {
             this.toastr.error("Please Try Again with valid credentials.", error.error.message);
             console.log("Error : ", error);
-
           }
         },
         complete() {

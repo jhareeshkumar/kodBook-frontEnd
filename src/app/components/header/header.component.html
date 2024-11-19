@@ -7,13 +7,15 @@
                 <h1>Kodbook</h1>
             </a>
         </div>
-
+        <a routerLink="/feed" routerLinkActive="active-page" ariaCurrentWhenActive="page"
+            class="navbar-link">Explore</a>
         <!-- User Profile (right) -->
         <div class="navbar-profile">
 
             <span class="navbar-profile-name">{{getUsername()}}</span>
-            <img src="https://via.placeholder.com/40" alt="User Avatar" class="navbar-profile-avatar" />
-
+            <a routerLink="/profile" routerLinkActive="active-page" ariaCurrentWhenActive="page" class="navbar-link">
+                <img src="https://via.placeholder.com/40" alt="User Avatar" class="navbar-profile-avatar" />
+            </a>
         </div>
     </header>
     <button (click)="onLogout()" class="navbar-title-link">Logout</button>

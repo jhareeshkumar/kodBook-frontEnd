@@ -1,8 +1,8 @@
 export interface User {
     userName?: string;
     email?: string;
-    fullName?: string;
-    profilePictureUrl?: string;
+    dob?: string;
+    gender?: string;
     bio?: string;
     city?: string;
     college?: string;

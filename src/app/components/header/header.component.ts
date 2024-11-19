@@ -26,10 +26,14 @@ export class HeaderComponent {
     this.toastr.success('You have been logged out. See you again soon!', 'Logged Out Successfully!');
     this.authService.clearUser();
     this.authService.logout();
-    
+
+  }
+  getUsername(): string | undefined {
+    const userSignal = this.authService.getUser();
+    return userSignal()?.userName;
   }
 
-  getUsername(): string | undefined {
-    return this.authService.getUser()?.userName;
+  getUser() {
+    return this.authService.getUser();
   }
 }

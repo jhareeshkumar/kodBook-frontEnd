@@ -37,11 +37,11 @@ export class SignupComponent {
   isSignupFormSubmitted = false;
 
   signup: Object = {
-    userName: "john",
+    username: "john",
     email: "",
     bio: "",
     city: "",
-    dob: "",
+    dateOfBirth: "",
     college: "",
     gender: "",
     gitHub: "",
@@ -51,9 +51,9 @@ export class SignupComponent {
 
   private formBuilder = inject(FormBuilder);
   signupForm = this.formBuilder.group({
-    userName: ['', Validators.required],
+    username: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    dob: ['', Validators.required],
+    dateOfBirth: ['', Validators.required],
     gender: ['', Validators.required],
     password: ['', [Validators.required, Validators.minLength(5)]],
   })

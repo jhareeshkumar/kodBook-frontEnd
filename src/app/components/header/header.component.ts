@@ -3,6 +3,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,7 @@ import { CommonModule } from '@angular/common';
 export class HeaderComponent {
   //dependency injections
   private authService = inject(AuthService);
+  private userService = inject(UserService);
   private toastr = inject(ToastrService);
 
 
@@ -24,16 +26,12 @@ export class HeaderComponent {
 
   onLogout(): void {
     this.toastr.success('You have been logged out. See you again soon!', 'Logged Out Successfully!');
-    this.authService.clearUser();
+    this.userService.clearUser();
     this.authService.logout();
 
   }
   getUsername(): string | undefined {
-    const userSignal = this.authService.getUser();
-    return userSignal()?.userName;
-  }
-
-  getUser() {
-    return this.authService.getUser();
+    const userSignal = this.userService.getUser();
+    return userSignal()?.username;
   }
 }

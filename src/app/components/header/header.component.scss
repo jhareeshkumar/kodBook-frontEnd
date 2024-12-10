@@ -1,35 +1,58 @@
 .navbar {
-    @apply flex justify-between items-center px-2 py-2 bg-gray-900 text-white shadow-md;
+    @apply bg-gray-800 p-4 shadow-md flex items-center justify-between;
+    /* General navbar styles */
 
-    &-header {
-        @apply flex justify-between w-full max-w-screen-xl mx-auto;
+    .navbar-header {
+        @apply flex items-center justify-between w-full;
+        /* Align title and links properly */
     }
 
-    &-title {
+    .navbar-title-link h1 {
+        @apply text-3xl font-bold text-blue-400 hover:text-blue-500 transition duration-300;
+        /* Kodbook title */
+    }
+
+    .navbar-links,
+    .navbar-actions {
+        @apply flex items-center space-x-4;
+        /* Space between links */
+    }
+
+    .navbar-link {
+        @apply px-4 py-2 bg-gray-700 text-gray-200 rounded-lg shadow-md hover:bg-gray-600 hover:shadow-lg transition-all duration-300 ease-in-out;
+        /* Button-like links */
+    }
+
+    .active-page {
+        @apply bg-blue-500 text-white font-bold border-blue-700 shadow-lg;
+        /* Highlight active link */
+    }
+
+    .navbar-profile {
         @apply flex items-center space-x-2;
-
-        &-link {
-            @apply text-xl font-bold text-white hover:text-blue-400 transition-colors;
-        }
+        /* Align profile picture and name */
     }
 
-    &-actions {
-        @apply flex items-center space-x-6;
-
-        &-link {
-            @apply text-sm font-semibold text-white hover:text-blue-400 transition-colors;
-        }
+    .navbar-profile-avatar {
+        @apply rounded-full w-10 h-10 border-2 border-gray-500;
+        /* Profile avatar */
     }
 
-    &-profile {
-        @apply flex items-center space-x-3;
+    .logout-button {
+        @apply px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600 transition duration-300;
+        /* Logout button styles */
+    }
+}
 
-        &-avatar {
-            @apply w-10 h-10 rounded-full;
-        }
+@media (max-width: 768px) {
+    .navbar {
+        @apply flex-col;
+        /* Stack elements for smaller screens */
+    }
 
-        &-name {
-            @apply text-sm font-medium text-white;
-        }
+    .navbar-links,
+    .navbar-actions {
+        @apply flex-col space-y-4;
+        /* Stack links vertically */
     }
 }

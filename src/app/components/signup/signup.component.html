@@ -1,10 +1,10 @@
 <div class="form-container">
     <h1 class="form-title">Sign Up</h1>
     <form [formGroup]="signupForm" (ngSubmit)="onSignup()" class="form">
-        <label for="userName" class="form-label">Username</label>
-        <input type="text" formControlName="userName" id="userName" name="userName" class="form-input"
+        <label for="username" class="form-label">Username</label>
+        <input type="text" formControlName="username" id="username" name="username" class="form-input"
             placeholder="Enter your username" autocomplete="username" />
-        <div *ngIf="hasError('userName', 'required')" class="form-error">
+        <div *ngIf="hasError('username', 'required')" class="form-error">
             <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 12H9v-2h2v2zm0-4H9V6h2v4z" />
             </svg>
@@ -27,10 +27,10 @@
             Please enter correct mail!
         </div>
 
-        <label for="dob" class="form-label">Date of Birth</label>
-        <input type="date" formControlName="dob" id="dob" name="dob" class="form-input" />
+        <label for="dateOfBirth" class="form-label">Date of Birth</label>
+        <input type="date" formControlName="dateOfBirth" id="dateOfBirth" name="dateOfBirth" class="form-input" />
 
-        <div *ngIf="hasError('dob', 'required')" class="form-error">
+        <div *ngIf="hasError('dateOfBirth', 'required')" class="form-error">
             <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 12H9v-2h2v2zm0-4H9V6h2v4z" />
             </svg>

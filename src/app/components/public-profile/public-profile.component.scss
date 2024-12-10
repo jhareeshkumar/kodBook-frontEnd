@@ -1,0 +1,83 @@
+.profile-container {
+    @apply p-6 m-5 max-w-md mx-auto rounded-lg shadow-lg;
+}
+
+.profile-header {
+    @apply text-center;
+}
+
+.profile-photo {
+    @apply w-32 h-32 rounded-full mx-auto border-4 border-gray-300 dark:border-gray-600;
+}
+
+.profile-username {
+    @apply mt-4 text-2xl font-bold;
+}
+
+.profile-bio {
+    @apply text-sm mt-2;
+}
+
+.profile-details {
+    @apply mt-6 space-y-3;
+}
+
+.profile-detail {
+    @apply text-sm flex justify-between items-center border-b;
+}
+
+.profile-detail span {
+    @apply font-bold;
+}
+
+.profile-links {
+    @apply mt-6 flex justify-around;
+}
+
+.profile-link {
+    @apply text-sm inline-flex items-center space-x-2 px-4 py-2 border rounded-lg transition-all duration-200 ease-in-out;
+}
+
+.github-link {
+    @apply text-white bg-gray-900 hover:bg-gray-700;
+}
+
+.linkedin-link {
+    @apply text-white bg-blue-600 hover:bg-blue-500;
+}
+
+.posts-section {
+    @apply mt-6 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5;
+
+    .post {
+        @apply rounded-md overflow-hidden shadow-md transition-transform duration-200 hover:scale-105 hover:shadow-lg;
+
+        .post-image {
+            @apply w-full h-40 object-cover;
+        }
+    }
+}
+
+.no-user-found-container {
+    @apply flex items-center justify-center h-screen bg-gray-100 text-gray-700;
+
+    .no-user-content {
+        @apply text-center p-6 bg-white rounded-md shadow-md;
+
+        .icon {
+            @apply w-16 h-16 text-red-500 mx-auto mb-4;
+        }
+
+        h1 {
+            @apply text-2xl font-semibold mb-2;
+        }
+
+        p {
+            @apply text-gray-600 mb-4;
+        }
+
+        .go-back-btn {
+            @apply inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-200;
+        }
+    }
+}

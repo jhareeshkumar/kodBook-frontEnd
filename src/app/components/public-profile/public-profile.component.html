@@ -1,29 +1,29 @@
-<div class="profile-container">
+@if (user) {<div class="profile-container">
     <div class="profile-header">
-        <img [src]="'assets/default-profile.png'" alt="{{ user()?.username }}" class="profile-photo" />
-        <h1 class="profile-username">{{ user()?.username }}</h1>
-        <p class="profile-bio">{{ user()?.bio }}</p>
+        <img [src]="'assets/default-profile.png'" alt="{{ user.username }}" class="profile-photo" />
+        <h1 class="profile-username">{{ user.username }}</h1>
+        <p class="profile-bio">{{ user.bio }}</p>
     </div>
 
     <div class="profile-details">
-        <div class="profile-detail"><span>Email:</span> {{ user()?.email }}</div>
-        <div class="profile-detail"><span>College:</span> {{ user()?.college }}</div>
-        <div class="profile-detail"><span>City:</span> {{ user()?.city }}</div>
+        <div class="profile-detail"><span>Email:</span> {{ user.email }}</div>
+        <div class="profile-detail"><span>College:</span> {{ user.college }}</div>
+        <div class="profile-detail"><span>City:</span> {{ user.city }}</div>
         <div class="profile-detail">
-            <span>Date of Birth:</span> {{ user()?.dateOfBirth }}
+            <span>Date of Birth:</span> {{ user.dateOfBirth }}
         </div>
-        <div class="profile-detail"><span>Gender:</span> {{ user()?.gender }}</div>
+        <div class="profile-detail"><span>Gender:</span> {{ user.gender }}</div>
     </div>
 
     <div class="profile-links">
-        <a *ngIf="user()?.gitHub" [href]="user()?.gitHub" target="_blank" class="profile-link github-link">
+        <a *ngIf="user.gitHub" [href]="user.gitHub" target="_blank" class="profile-link github-link">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
                 <path
                     d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.22 2.2.82a7.54 7.54 0 0 1 2-.27c.68.01 1.36.09 2 .27 1.52-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.64 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
             </svg>
             GitHub
         </a>
-        <a *ngIf="user()?.linkedIn" [href]="user()?.linkedIn" target="_blank" class="profile-link linkedin-link">
+        <a *ngIf="user.linkedIn" [href]="user.linkedIn" target="_blank" class="profile-link linkedin-link">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
                 <path
                     d="M0 1.146C0 .513.324 0 .725 0h14.55c.4 0 .725.513.725 1.146v13.708c0 .633-.324 1.146-.725 1.146H.725A.723.723 0 0 1 0 14.854V1.146zm4.943 12.248V6.169H3.228v7.225h1.715zM4.088 5.004a.974.974 0 1 1-.002-1.949.974.974 0 0 1 .002 1.949zm4.478 8.39V9.359c0-.246-.017-.493-.091-.673-.202-.492-.662-.999-1.435-.999-.833 0-1.165.631-1.29.918-.079.181-.099.432-.099.685v3.404h1.716v-3.192c0-.061.004-.123.019-.183.054-.222.178-.451.48-.451.341 0 .477.338.477.833v2.993h1.716zM14.215 5H13.02a.723.723 0 0 0-.723.723v7.604c0 .4.323.723.723.723h1.195c.4 0 .723-.323.723-.723V5.723A.723.723 0 0 0 14.215 5z" />
@@ -32,3 +32,20 @@
         </a>
     </div>
 </div>
+}
+@else {
+<div>
+    <div class="no-user-found-container">
+        <div class="no-user-content">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 20l-5.447-2.724A1 1 0 013 16.382V7.618a1 1 0 01.553-.894L9 4m6 16l5.447-2.724A1 1 0 0021 16.382V7.618a1 1 0 00-.553-.894L15 4M9 4v16m6-16v16" />
+            </svg>
+            <h1>No User Found</h1>
+            <p>The username you searched for does not exist.</p>
+            <a routerLink="/" class="go-back-btn">Go Back Home</a>
+        </div>
+    </div>
+
+</div>
+}

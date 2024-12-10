@@ -1,58 +1,44 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, Signal, signal } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private router = inject(Router)
+  private router = inject(Router);
 
-  constructor(private http: HttpClient) {
-    const storedUsername = localStorage.getItem('userName')
-    if (storedUsername) {
-      this.userSignal.set({ userName: storedUsername });
-    }
-  }
+  private userService = inject(UserService);
+
+  constructor(private http: HttpClient) { }
 
   private apiUrl = environment.apiUrl;
-
-
-  //user signal related to user tasks
-  private userSignal = signal<User | null>(null);
-
-  setUser(user: User): void {
-    this.userSignal.set(user);
-  }
-
-  getUser(): Signal<User | null> {
-    return this.userSignal;
-  }
-
-  clearUser() {
-    this.userSignal.set(null);
-  }
 
   signup(signupData: any) {
     return this.http.post(this.apiUrl + "/user/signup", signupData);
   }
 
   login(credentials: any): Observable<User> {
-    return this.http.post(this.apiUrl + "/user/login", credentials);
+    //passing the headers with the httpbasic
+    const headers = new HttpHeaders({
+      Authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
+    });
+    return this.http.post(this.apiUrl + "/user/login", credentials, { headers });
   }
 
   logout(): void {
-    const logoutUserName = localStorage.removeItem('userName');
-    console.log("logoutUserName:", logoutUserName);
+    localStorage.removeItem('Authorization');
+    this.userService.clearUser()
     this.router.navigate(['/login']);
   }
 
   isLoggedin(): boolean {
-    if (this.userSignal() || localStorage.getItem('userName')) {
+    if (localStorage.getItem('Authorization')) {
       return true;
     } else {
       return false;

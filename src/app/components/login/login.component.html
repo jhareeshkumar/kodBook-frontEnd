@@ -1,10 +1,10 @@
 <div class="form-container">
     <h1 class="form-title">Login</h1>
     <form [formGroup]="loginFormGroup" (submit)="onLogin()" method="post" class="form">
-        <label for="userName" class="form-label">Username</label>
-        <input type="text" formControlName="userName" name="userName" id="userName" class="form-input"
+        <label for="username" class="form-label">Username</label>
+        <input type="text" formControlName="username" name="username" id="username" class="form-input"
             autocomplete="username" placeholder="Enter your username" />
-        <div *ngIf="hasError('userName', 'required')" class="form-error">
+        <div *ngIf="hasError('username', 'required')" class="form-error">
             <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 12H9v-2h2v2zm0-4H9V6h2v4z" />
             </svg>

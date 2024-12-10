@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { User } from '../../models/user';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ import { User } from '../../models/user';
 export class LoginComponent {
   //dependency injecting service
   private authService = inject(AuthService);
+  private userService = inject(UserService);
   private toastr = inject(ToastrService);
 
   //injecting router 
@@ -33,7 +35,7 @@ export class LoginComponent {
   //form related
   private formBuiler = inject(FormBuilder);
   loginFormGroup = this.formBuiler.group({
-    userName: ['', [Validators.required]],
+    username: ['', [Validators.required]],
     password: ['', [Validators.required]]
   });
 
@@ -53,11 +55,16 @@ export class LoginComponent {
           console.log("success Response", res);
 
           const user: User = res.data;
+          console.log(user);
 
           //storing user data to signal
-          this.authService.setUser(user);
+          this.userService.setUser(user);
 
-          localStorage.setItem('userName', res.data.userName);
+          const username = credentials.username;
+          const password = credentials.password;
+          const basicAuth = 'Basic ' + btoa(username + ':' + password);
+
+          localStorage.setItem('Authorization', basicAuth);
 
           //redirection after successfull login
           this.router.navigate(['/feed']);

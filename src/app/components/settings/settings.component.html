@@ -1,0 +1,17 @@
+<div class="settings-container">
+    <h1 class="text-3xl font-bold mb-4">Settings</h1>
+
+    <div class="settings-navigation">
+        <ul class="list-none space-y-4">
+            <li>
+                <a routerLink="/settings/change-password" routerLinkActive="active"
+                    class="text-lg text-blue-500 hover:underline">Change Password</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Display the settings content here -->
+    <div class="settings-content mt-6">
+        <router-outlet></router-outlet>
+    </div>
+</div>

@@ -18,7 +18,11 @@ export class HeaderComponent {
   private userService = inject(UserService);
   private toastr = inject(ToastrService);
 
+  isMenuOpen = false; // Track mobile menu state
 
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 
   isLoggedIn(): boolean {
     return this.authService.isLoggedin();

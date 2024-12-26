@@ -68,4 +68,7 @@ export class UserService {
     return this.http.get(this.apiUrl + "/user/profile/" + username);
   }
 
+  changePassword(currentPassword:string,newPassword:string){
+    return this.http.post(this.apiUrl+'/user/change-password',{currentPassword,newPassword});
+  }
 }

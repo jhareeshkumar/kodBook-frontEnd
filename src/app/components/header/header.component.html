@@ -1,44 +1,67 @@
-@if (isLoggedIn()) {
-<div class="navbar">
-    <header class="navbar-header">
-        <!-- Kodbook Title (left) -->
-        <div class="navbar-title">
-            <a routerLink="/home" class="navbar-title-link">
-                <h1>Kodbook</h1>
-            </a>
-        </div>
-        <a routerLink="/feed" routerLinkActive="active-page" ariaCurrentWhenActive="page"
-            class="navbar-link">Explore</a>
-        <!-- User Profile (right) -->
-        <div class="navbar-profile">
-
-            <span class="navbar-profile-name">{{getUsername()}}</span>
-            <a routerLink="/profile" routerLinkActive="active-page" ariaCurrentWhenActive="page" class="navbar-link">
-                <img src="https://via.placeholder.com/40" alt="User Avatar" class="navbar-profile-avatar" />
-            </a>
-        </div>
-    </header>
-    <button (click)="onLogout()" class="navbar-title-link logout-button">Logout</button>
-</div>
-
-}
-@else {
-<div class="navbar">
-    <header class="navbar-header">
-        <!-- Kodbook Title (left) -->
-        <div class="navbar-title">
-            <a routerLink="/home" class="navbar-title-link">
-                <h1>Kodbook</h1>
+<nav class="bg-gray-900 text-white shadow-md w-full">
+    <div class="flex justify-between items-center h-16 px-4">
+        <!-- Kodbook Title -->
+        <div class="flex-shrink-0">
+            <a routerLink="/home" class="text-2xl font-bold text-blue-400 hover:text-blue-500 transition duration-300">
+                Kodbook
             </a>
         </div>
 
-        <!-- Login & Signup (right) -->
-        <div class="navbar-actions">
-            <a routerLink="/signup" routerLinkActive="active-page" ariaCurrentWhenActive="page" class="navbar-link">Sign
-                Up</a>
-            <a routerLink="/login" routerLinkActive="active-page" ariaCurrentWhenActive="page"
-                class="navbar-link">Login</a>
+        <!-- Desktop Links -->
+        <div class="hidden md:flex ml-auto space-x-6">
+            <a *ngIf="isLoggedIn()" routerLink="/feed" routerLinkActive="active-page" ariaCurrentWhenActive="page"
+                class="block px-4 py-2 hover:bg-gray-700">Explore</a>
+            <a *ngIf="isLoggedIn()" routerLink="settings" class="block px-4 py-2 hover:bg-gray-700">
+                Settings
+            </a>
+            <a *ngIf="!isLoggedIn()" routerLink="/signup" routerLinkActive="active-page" ariaCurrentWhenActive="page"
+                class="hover:text-gray-300">Sign Up</a>
+            <a *ngIf="!isLoggedIn()" routerLink="/login" routerLinkActive="active-page" ariaCurrentWhenActive="page"
+                class="hover:text-gray-300">Login</a>
         </div>
-    </header>
-</div>
-}
+
+        <!-- User Profile or Logout -->
+        <div class="hidden md:flex items-center space-x-4">
+            <div *ngIf="isLoggedIn()" class="flex items-center space-x-2">
+                <span class="font-medium text-gray-200">{{ getUsername() }}</span>
+                <a routerLink="/profile" routerLinkActive="active-page" ariaCurrentWhenActive="page">
+                    <img src="https://via.placeholder.com/40" alt="User Avatar"
+                        class="rounded-full w-10 h-10 border-2 border-gray-500">
+                </a>
+            </div>
+            <button *ngIf="isLoggedIn()" (click)="onLogout()"
+                class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300">
+                Logout
+            </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden flex items-center">
+            <button (click)="toggleMenu()" class="text-gray-300 focus:outline-none">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Links -->
+    <div *ngIf="isMenuOpen" class="md:hidden bg-gray-800 space-y-2 py-2 text-center">
+        <a routerLink="/home" class="block px-4 py-2 hover:bg-gray-700">Home</a>
+        <a *ngIf="isLoggedIn()" routerLink="/feed" class="block px-4 py-2 hover:bg-gray-700">Explore</a>
+        <a *ngIf="!isLoggedIn()" routerLink="/signup" class="block px-4 py-2 hover:bg-gray-700">Sign Up</a>
+        <a *ngIf="!isLoggedIn()" routerLink="/login" class="block px-4 py-2 hover:bg-gray-700">Login</a>
+        <a *ngIf="isLoggedIn()" routerLink="/profile" class="block px-4 py-2 hover:bg-gray-700">
+            Profile
+        </a>
+        <a *ngIf="isLoggedIn()" routerLink="/settings" class="block px-4 py-2 hover:bg-gray-700">
+            Settings
+        </a>
+        <button *ngIf="isLoggedIn()" (click)="onLogout()"
+            class="block w-full px-4 py-2 text-center bg-red-500 hover:bg-red-600 text-white">
+            Logout
+        </button>
+    </div>
+</nav>

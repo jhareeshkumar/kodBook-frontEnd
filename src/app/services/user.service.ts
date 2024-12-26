@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Signal, signal } from '@angular/core';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 import { User } from '../models/user';
 
 @Injectable({
@@ -68,7 +68,7 @@ export class UserService {
     return this.http.get(this.apiUrl + "/user/profile/" + username);
   }
 
-  changePassword(currentPassword:string,newPassword:string){
-    return this.http.post(this.apiUrl+'/user/change-password',{currentPassword,newPassword});
+  changePassword(currentPassword: string, newPassword: string) {
+    return this.http.post(this.apiUrl + '/user/change-password', { currentPassword, newPassword });
   }
 }

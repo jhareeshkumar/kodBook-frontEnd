@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
@@ -19,6 +19,15 @@ export class HeaderComponent {
   private toastr = inject(ToastrService);
 
   isMenuOpen = false; // Track mobile menu state
+
+  constructor(private router: Router) {
+    //closing the menu after navigation successfull.
+    this.router.events.subscribe(e => {
+      if (e instanceof NavigationEnd) {
+        this.isMenuOpen = false;
+      }
+    });
+  }
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;

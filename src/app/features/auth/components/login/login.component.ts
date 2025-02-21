@@ -4,8 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { User } from '../../models/user';
-import { UserService } from '../../services/user.service';
+import { User } from '../../../../core/models/user';
+import { UserService } from '../../../user/services/user.service';
 
 @Component({
   selector: 'app-login',

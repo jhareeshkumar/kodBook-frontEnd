@@ -1,0 +1,64 @@
+<form [formGroup]="updateProfileForm" (ngSubmit)="onUpdateProfile()">
+    <label for="username" class="form-label">Username</label>
+    <input type="text" formControlName="username" id="username" name="username" class="form-input"
+        placeholder="Enter your username" autocomplete="username" />
+    <div *ngIf="hasError('username', 'required')" class="form-error">
+        <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 12H9v-2h2v2zm0-4H9V6h2v4z" />
+        </svg>
+        Please enter Username!
+    </div>
+    <label for="dateOfBirth" class="form-label">Date Of Birth</label>
+    <input type="date" formControlName="dateOfBirth" id="dateOfBirth" name="dateOfBirth" class="form-input" />
+    <div *ngIf="hasError('dateOfBirth', 'required')" class="form-error">
+        <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 12H9v-2h2v2zm0-4H9V6h2v4z" />
+        </svg>
+        Please enter Date Of Birth!
+    </div>
+    <label for="bio" class="form-label">Bio</label>
+    <textarea formControlName="bio" id="bio" name="bio" class="form-input" placeholder="Enter your bio"></textarea>
+    <div *ngIf="hasError('bio', 'required')" class="form-error ">
+        <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 12H9v-2h2v2zm0-4H9V6h2v4z" />
+        </svg>
+        Please enter bio!
+    </div>
+    <label for="city" class="form-label">City</label>
+    <input type="text" formControlName="city" id="city" name="city" class="form-input" placeholder="Enter your city" />
+    <div *ngIf="hasError('city', 'required')" class="form-error ">
+        <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 12H9v-2h2v2zm0-4H9V6h2v4z" />
+        </svg>
+        Please enter city!
+    </div>
+    <label for="college" class="form-label">College</label>
+    <input type="text" formControlName="college" id="college" name="college" class="form-input"
+        placeholder="Enter your college" />
+    <div *ngIf="hasError('college', 'required')" class="form-error ">
+        <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 12H9v-2h2v2zm0-4H9V6h2v4z" />
+        </svg>
+        Please enter college!
+    </div>
+    <label for="linkedIn" class="form-label">LinkedIn</label>
+    <input type="text" formControlName="linkedIn" id="linkedIn" name="linkedIn" class="form-input"
+        placeholder="Enter your LinkedIn" />
+    <div *ngIf="hasError('linkedIn', 'required')" class="form-error ">
+        <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 12H9v-2h2v2zm0-4H9V6h2v4z" />
+        </svg>
+        Please enter LinkedIn!
+    </div>
+    <label for="gitHub" class="form-label">Github</label>
+    <input type="text" formControlName="gitHub" id="gitHub" name="gitHub" class="form-input"
+        placeholder="Enter your Github" />
+    <div *ngIf="hasError('gitHub', 'required')" class="form-error ">
+        <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 12H9v-2h2v2zm0-4H9V6h2v4z" />
+        </svg>
+        Please enter Github!
+    </div>
+
+    <button type="submit" class="btn">Update Profile</button>
+</form>

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from "./components/header/header.component";
-import { FooterComponent } from "./components/footer/footer.component";
-import { SpinnerComponent } from "./components/spinner/spinner.component";
+import { HeaderComponent } from "./shared/components/header/header.component";
+import { FooterComponent } from "./shared/components/footer/footer.component";
+import { SpinnerComponent } from "./shared/components/spinner/spinner.component";
 
 @Component({
   selector: 'app-root',

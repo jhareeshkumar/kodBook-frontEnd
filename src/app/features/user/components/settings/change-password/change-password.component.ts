@@ -13,6 +13,12 @@ import { Router } from '@angular/router';
   styleUrl: './change-password.component.scss'
 })
 export class ChangePasswordComponent {
+  requestOtp() {
+    throw new Error('Method not implemented.');
+  }
+  updatePassword() {
+    throw new Error('Method not implemented.');
+  }
   private fb: FormBuilder = inject(FormBuilder);
   private toast = inject(ToastrService);
   private userService = inject(UserService);
@@ -29,6 +35,10 @@ export class ChangePasswordComponent {
     currentPassword: '',
     newPassword: ''
   } = this.changePasswordForm.value;
+  otp: any;
+  oldPassword: any;
+  newPassword: any;
+  confirmPassword: any;
 
 
   toggleCurrentPasswordVisiblity() {
@@ -70,6 +80,4 @@ export class ChangePasswordComponent {
     this.toast.warning("Please Login Again with Updated Credentials!.", "Login Required!");
     this.router.navigateByUrl('/login');
   }
-
-
 }
